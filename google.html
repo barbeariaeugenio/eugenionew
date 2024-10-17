@@ -30,11 +30,23 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
         <iframe src="https://eugeniobarbershop.com.br/" width="100%" height="100%" style="border: none;"></iframe>
-   <script>
-    // Armazena no localStorage que o usuário veio pela página "google"
-    localStorage.setItem('origin', 'google');
-    console.log("Origem 'google' armazenada no localStorage.");
+<script>
+    // Função para definir um cookie
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    // Armazena no cookie que o usuário veio pela página "google"
+    setCookie('origin', 'google', 1);
+    console.log("Origem 'google' armazenada no cookie.");
 </script>
+
 
 
     </body>
