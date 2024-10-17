@@ -54,23 +54,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script type="module" async data-framer-bundle="main" fetchpriority="low" src="https://framerusercontent.com/sites/6f8oCwc7n8sclQFwnWqTWW/script_main.RYNPDGMW.mjs"></script><div id="svg-templates" style="position: absolute; overflow: hidden; bottom: 0; left: 0; width: 0; height: 0; z-index: 0; contain: strict" aria-hidden="true">
 </div>
     <!-- Start of bodyEnd -->
-    <script>
+  <script>
     window.onload = function() {
+        console.log("Página carregada. Iniciando verificação do sessionStorage...");
+        
         setTimeout(function() {
             // URL padrão (caso o usuário não venha da página "google")
             var whatsappURL = "https://api.whatsapp.com/send?phone=554330661016&text=Ol%C3%A1%2C%20vim%20pelo%20Facebook%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.";
-
+            
             // Verifica se o usuário veio da página "google" pelo sessionStorage
             var origin = sessionStorage.getItem('origin');
+            console.log("Valor encontrado no sessionStorage para 'origin':", origin);
+            
             if (origin === 'google') {
                 whatsappURL = "https://api.whatsapp.com/send?phone=554330661016&text=Ol%C3%A1%2C%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.";
+                console.log("Usuário veio pelo Google. URL do WhatsApp alterada.");
+            } else {
+                console.log("Usuário NÃO veio pelo Google. URL do WhatsApp mantida.");
             }
 
+            // Exibe a URL final antes do redirecionamento
+            console.log("Redirecionando para:", whatsappURL);
+            
             // Redireciona para a URL do WhatsApp
             window.location.href = whatsappURL;
         }, 4000); // 4000 milissegundos = 4 segundos
     };
 </script>
+
     <!-- End of bodyEnd -->
 </body>
 </html>
