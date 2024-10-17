@@ -56,15 +56,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Start of bodyEnd -->
 <script>
     window.onload = function() {
-        console.log("Página carregada. Iniciando verificação do localStorage...");
+        console.log("Página carregada. Iniciando verificação do cookie...");
         
+        // Função para ler o valor de um cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
         setTimeout(function() {
             // URL padrão (caso o usuário não venha da página "google")
             var whatsappURL = "https://api.whatsapp.com/send?phone=554330661016&text=Ol%C3%A1%2C%20vim%20pelo%20Facebook%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.";
             
-            // Verifica se o usuário veio da página "google" pelo localStorage
-            var origin = localStorage.getItem('origin');
-            console.log("Valor encontrado no localStorage para 'origin':", origin);
+            // Verifica se o cookie 'origin' existe e se o valor é 'google'
+            var origin = getCookie('origin');
+            console.log("Valor encontrado no cookie para 'origin':", origin);
             
             if (origin === 'google') {
                 whatsappURL = "https://api.whatsapp.com/send?phone=554330661016&text=Ol%C3%A1%2C%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.";
@@ -81,6 +93,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }, 4000); // 4000 milissegundos = 4 segundos
     };
 </script>
+
 
 
     <!-- End of bodyEnd -->
